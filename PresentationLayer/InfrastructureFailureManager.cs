@@ -52,15 +52,15 @@ namespace PresentationLayer
         {
             DisableButton();
 
-            if (!panelBody.Controls.Contains(UserControlAddFailure.Instance))
+            if (!panelBody.Controls.Contains(UserControlHomepage.Instance))
             {
-                panelBody.Controls.Add(UserControlAddFailure.Instance);
-                UserControlAddFailure.Instance.Dock = DockStyle.Fill;
-                UserControlAddFailure.Instance.BringToFront();
+                panelBody.Controls.Add(UserControlHomepage.Instance);
+                UserControlHomepage.Instance.Dock = DockStyle.Fill;
+                UserControlHomepage.Instance.BringToFront();
             }
             else
             {
-                UserControlAddFailure.Instance.BringToFront();
+                UserControlHomepage.Instance.BringToFront();
             }
         }
 
@@ -130,6 +130,17 @@ namespace PresentationLayer
         private void InfrastructureFailureManager_Load(object sender, EventArgs e)
         {
             lblUser.Text = Login.userName;
+
+            if (!panelBody.Controls.Contains(UserControlHomepage.Instance))
+            {
+                panelBody.Controls.Add(UserControlHomepage.Instance);
+                UserControlHomepage.Instance.Dock = DockStyle.Fill;
+                UserControlHomepage.Instance.BringToFront();
+            }
+            else
+            {
+                UserControlHomepage.Instance.BringToFront();
+            }
         }
     }
 }
