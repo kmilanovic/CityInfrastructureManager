@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InfrastructureFailureManager));
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.iconPictureBoxUser = new FontAwesome.Sharp.IconPictureBox();
             this.lblUser = new System.Windows.Forms.Label();
             this.iconButtonHistoryOfFailures = new FontAwesome.Sharp.IconButton();
@@ -38,7 +40,6 @@
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBoxUser)).BeginInit();
             this.panelLogo.SuspendLayout();
@@ -60,6 +61,20 @@
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(250, 653);
             this.panelMenu.TabIndex = 0;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.btnLogout.FlatAppearance.BorderSize = 2;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Location = new System.Drawing.Point(16, 573);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(143, 40);
+            this.btnLogout.TabIndex = 7;
+            this.btnLogout.Text = "ODJAVA";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // iconPictureBoxUser
             // 
@@ -168,7 +183,7 @@
             // 
             // btnHome
             // 
-            this.btnHome.Image = global::PresentationLayer.Properties.Resources.LogoCIM6;
+            this.btnHome.Image = ((System.Drawing.Image)(resources.GetObject("btnHome.Image")));
             this.btnHome.Location = new System.Drawing.Point(3, 31);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(244, 74);
@@ -195,20 +210,6 @@
             this.panelBody.Padding = new System.Windows.Forms.Padding(20);
             this.panelBody.Size = new System.Drawing.Size(1432, 578);
             this.panelBody.TabIndex = 2;
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            this.btnLogout.FlatAppearance.BorderSize = 2;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(16, 573);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(143, 40);
-            this.btnLogout.TabIndex = 7;
-            this.btnLogout.Text = "ODJAVA";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // InfrastructureFailureManager
             // 

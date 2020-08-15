@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlHomepage));
             this.pictureBoxHomepage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHomepage)).BeginInit();
             this.SuspendLayout();
@@ -35,7 +36,7 @@
             // pictureBoxHomepage
             // 
             this.pictureBoxHomepage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHomepage.Image = global::PresentationLayer.Properties.Resources.City_Landscape2;
+            this.pictureBoxHomepage.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHomepage.Image")));
             this.pictureBoxHomepage.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxHomepage.Name = "pictureBoxHomepage";
             this.pictureBoxHomepage.Size = new System.Drawing.Size(1320, 550);
