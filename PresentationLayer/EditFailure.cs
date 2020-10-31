@@ -16,6 +16,7 @@ namespace PresentationLayer
         private bool dateChanged = false;
         private FailureRepository _failureRepository = new FailureRepository();
         Failure _failure = new Failure();
+
         public EditFailure(Failure failure)
         {
             InitializeComponent();
@@ -32,10 +33,9 @@ namespace PresentationLayer
             lblUsername.Text = _failureRepository.GetUserById(userId);
             int cityId = _failure.Id_City;
             lblCity.Text = _failureRepository.GetCityById(cityId);
-            dateTimePickerBegin.Value = _failure.BeginOfFailure;
-            dateTimePickerEnd.CustomFormat = " ";
+            lblBeginDate.Text = _failure.BeginOfFailure.ToString();
             dateTimePickerEnd.Format = DateTimePickerFormat.Custom;
-            dateTimePickerEnd.ValueChanged += new System.EventHandler(dateTimePickerEnd_ValueChanged);
+            dateTimePickerEnd.CustomFormat = " ";
             textBoxAdditionalDescription.Text = _failure.AdditionalDescription;
         }
 
@@ -43,48 +43,37 @@ namespace PresentationLayer
         {
             if (dateChanged)
             {
-                _failure.Id = Int32.Parse(lblFailure.Text);
-                string typeOfFailure = lblTypeOfFailure.Text;
-                _failure.Id_TypeOfFailure = _failureRepository.GetTypeOfFailureIdByString(typeOfFailure);
-                string username = lblUsername.Text;
-                _failure.Id_Username = _failureRepository.GetUserIdByString(username);
-                string city = lblCity.Text;
-                _failure.Id_City = _failureRepository.GetCityIdByString(city);
-                _failure.BeginOfFailure = dateTimePickerBegin.Value;
-                _failure.EndOfFailure = dateTimePickerEnd.Value;
-                _failure.AdditionalDescription = textBoxAdditionalDescription.Text;
+                int result = DateTime.Compare(Convert.ToDateTime(dateTimePickerEnd.Value), Convert.ToDateTime(lblBeginDate.Text));
 
-                _failureRepository.UpdateFailure(_failure);
+                if(result == -1 || result == 0)
+                {
+                    MessageBox.Show("Uneseni datum završetka ispada: " + dateTimePickerEnd.Value + " je raniji ili jednak datumu početka ispada. Unesite novi datum završetka ispada!");
+                }
+                else
+                {
+                    _failure.EndOfFailure = dateTimePickerEnd.Value;
+                    _failure.AdditionalDescription = textBoxAdditionalDescription.Text;
+                    _failureRepository.UpdateFailure(_failure);
+
+                    UserControlActiveFailures.Instance.RefreshList();
+                    UserControlHistoryOfFailures.Instance.RefreshList();
+                }
             }
             else
             {
-                _failure.Id = Int32.Parse(lblFailure.Text);
-                string typeOfFailure = lblTypeOfFailure.Text;
-                _failure.Id_TypeOfFailure = _failureRepository.GetTypeOfFailureIdByString(typeOfFailure);
-                string username = lblUsername.Text;
-                _failure.Id_Username = _failureRepository.GetUserIdByString(username);
-                string city = lblCity.Text;
-                _failure.Id_City = _failureRepository.GetCityIdByString(city);
-                _failure.BeginOfFailure = dateTimePickerBegin.Value;
                 _failure.AdditionalDescription = textBoxAdditionalDescription.Text;
-
                 _failureRepository.UpdateFailureWithoutDate(_failure);
+
+                UserControlActiveFailures.Instance.RefreshList();
+                UserControlHistoryOfFailures.Instance.RefreshList();
+
             }
         }
 
         private void dateTimePickerEnd_ValueChanged(object sender, EventArgs e)
         {
-            dateTimePickerEnd.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             dateChanged = true;
-
-            if (!string.IsNullOrEmpty(dateTimePickerEnd.Value.ToString()))
-            {
-                Convert.ToDateTime(dateTimePickerEnd.Value);
-            }
-            else
-            {
-                dateTimePickerEnd.Value = Convert.ToDateTime(_failure.EndOfFailure);
-            }
+            dateTimePickerEnd.CustomFormat = "dd.MM.yyyy HH:mm:ss";
         }
     }
 }

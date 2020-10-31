@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class City
+    public class City   
     {
         public int Id { get; set; }
         public int Id_County { get; set; }
         public string Name { get; set; }
         public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public double Longitude { get; set; }       
     }
 }

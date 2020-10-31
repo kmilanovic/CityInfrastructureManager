@@ -58,7 +58,7 @@
             this.lblInsertDateTimeFrom.AutoSize = true;
             this.lblInsertDateTimeFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInsertDateTimeFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.lblInsertDateTimeFrom.Location = new System.Drawing.Point(1060, 99);
+            this.lblInsertDateTimeFrom.Location = new System.Drawing.Point(1009, 97);
             this.lblInsertDateTimeFrom.Name = "lblInsertDateTimeFrom";
             this.lblInsertDateTimeFrom.Size = new System.Drawing.Size(214, 18);
             this.lblInsertDateTimeFrom.TabIndex = 45;
@@ -72,14 +72,15 @@
             this.dateTimePickerBeginOfFailure.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dateTimePickerBeginOfFailure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerBeginOfFailure.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerBeginOfFailure.Location = new System.Drawing.Point(1063, 124);
+            this.dateTimePickerBeginOfFailure.Location = new System.Drawing.Point(1012, 122);
             this.dateTimePickerBeginOfFailure.Name = "dateTimePickerBeginOfFailure";
-            this.dateTimePickerBeginOfFailure.Size = new System.Drawing.Size(239, 28);
+            this.dateTimePickerBeginOfFailure.Size = new System.Drawing.Size(277, 28);
             this.dateTimePickerBeginOfFailure.TabIndex = 44;
+            this.dateTimePickerBeginOfFailure.ValueChanged += new System.EventHandler(this.dateTimePickerBeginOfFailure_ValueChanged);
             // 
             // richTextBoxAdditionalDescription
             // 
-            this.richTextBoxAdditionalDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxAdditionalDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxAdditionalDescription.Location = new System.Drawing.Point(26, 231);
             this.richTextBoxAdditionalDescription.Name = "richTextBoxAdditionalDescription";
             this.richTextBoxAdditionalDescription.Size = new System.Drawing.Size(239, 130);
@@ -91,11 +92,11 @@
             this.lblInsertTypeOfFailure.AutoSize = true;
             this.lblInsertTypeOfFailure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInsertTypeOfFailure.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.lblInsertTypeOfFailure.Location = new System.Drawing.Point(729, 97);
+            this.lblInsertTypeOfFailure.Location = new System.Drawing.Point(687, 97);
             this.lblInsertTypeOfFailure.Name = "lblInsertTypeOfFailure";
-            this.lblInsertTypeOfFailure.Size = new System.Drawing.Size(141, 18);
+            this.lblInsertTypeOfFailure.Size = new System.Drawing.Size(155, 18);
             this.lblInsertTypeOfFailure.TabIndex = 40;
-            this.lblInsertTypeOfFailure.Text = "Unesite vrstu ispada";
+            this.lblInsertTypeOfFailure.Text = "Odaberite vrstu ispada";
             // 
             // lblInsertAdditionalDescription
             // 
@@ -110,22 +111,22 @@
             // 
             // comboBoxTypesOfFailure
             // 
-            this.comboBoxTypesOfFailure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxTypesOfFailure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxTypesOfFailure.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.comboBoxTypesOfFailure.FormattingEnabled = true;
-            this.comboBoxTypesOfFailure.Location = new System.Drawing.Point(732, 122);
+            this.comboBoxTypesOfFailure.Location = new System.Drawing.Point(690, 122);
             this.comboBoxTypesOfFailure.Name = "comboBoxTypesOfFailure";
-            this.comboBoxTypesOfFailure.Size = new System.Drawing.Size(239, 30);
+            this.comboBoxTypesOfFailure.Size = new System.Drawing.Size(277, 28);
             this.comboBoxTypesOfFailure.TabIndex = 41;
             // 
             // comboBoxCities
             // 
-            this.comboBoxCities.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxCities.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCities.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.comboBoxCities.FormattingEnabled = true;
-            this.comboBoxCities.Location = new System.Drawing.Point(383, 122);
+            this.comboBoxCities.Location = new System.Drawing.Point(362, 122);
             this.comboBoxCities.Name = "comboBoxCities";
-            this.comboBoxCities.Size = new System.Drawing.Size(239, 30);
+            this.comboBoxCities.Size = new System.Drawing.Size(277, 28);
             this.comboBoxCities.TabIndex = 39;
             // 
             // lblInsertCity
@@ -133,20 +134,20 @@
             this.lblInsertCity.AutoSize = true;
             this.lblInsertCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInsertCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.lblInsertCity.Location = new System.Drawing.Point(380, 97);
+            this.lblInsertCity.Location = new System.Drawing.Point(359, 97);
             this.lblInsertCity.Name = "lblInsertCity";
-            this.lblInsertCity.Size = new System.Drawing.Size(91, 18);
+            this.lblInsertCity.Size = new System.Drawing.Size(105, 18);
             this.lblInsertCity.TabIndex = 38;
-            this.lblInsertCity.Text = "Unesite grad";
+            this.lblInsertCity.Text = "Odaberite grad";
             // 
             // comboBoxCounties
             // 
-            this.comboBoxCounties.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxCounties.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCounties.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.comboBoxCounties.FormattingEnabled = true;
-            this.comboBoxCounties.Location = new System.Drawing.Point(26, 122);
+            this.comboBoxCounties.Location = new System.Drawing.Point(25, 122);
             this.comboBoxCounties.Name = "comboBoxCounties";
-            this.comboBoxCounties.Size = new System.Drawing.Size(239, 30);
+            this.comboBoxCounties.Size = new System.Drawing.Size(277, 28);
             this.comboBoxCounties.TabIndex = 37;
             this.comboBoxCounties.SelectedIndexChanged += new System.EventHandler(this.comboBoxCounties_SelectedIndexChanged);
             // 
@@ -165,7 +166,7 @@
             // 
             this.btnInsertFailure.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.btnInsertFailure.ForeColor = System.Drawing.Color.White;
-            this.btnInsertFailure.Location = new System.Drawing.Point(1123, 468);
+            this.btnInsertFailure.Location = new System.Drawing.Point(1110, 466);
             this.btnInsertFailure.Name = "btnInsertFailure";
             this.btnInsertFailure.Size = new System.Drawing.Size(179, 56);
             this.btnInsertFailure.TabIndex = 35;

@@ -19,18 +19,15 @@ namespace PresentationLayer
             InitializeComponent();
         }
 
-        private void ActivateButton(object sendrBtn, Color color)
+        private void ActivateButton(object sendrBtn)
         {
             if (sendrBtn != null)
             {
                 DisableButton();
 
-                //Button
                 currentBtn = (IconButton)sendrBtn;
                 currentBtn.BackColor = Color.FromArgb(4, 83, 145);
-                currentBtn.ForeColor = color;
-                currentBtn.TextAlign = ContentAlignment.MiddleCenter;
-                currentBtn.IconColor = color;
+                currentBtn.TextAlign = ContentAlignment.MiddleRight;
                 currentBtn.ImageAlign = ContentAlignment.MiddleRight;
             }
         }
@@ -40,10 +37,7 @@ namespace PresentationLayer
             if (currentBtn != null)
             {
                 currentBtn.BackColor = Color.FromArgb(33, 150, 243);
-                currentBtn.ForeColor = Color.White;
-                currentBtn.TextAlign = ContentAlignment.MiddleLeft;
-                currentBtn.IconColor = Color.White;
-                currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                currentBtn.TextAlign = ContentAlignment.MiddleLeft;  
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
@@ -66,7 +60,7 @@ namespace PresentationLayer
 
         private void iconButtonAddFailure_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, Color.FromArgb(255, 255, 255));
+            ActivateButton(sender);
 
             if (!panelBody.Controls.Contains(UserControlAddFailure.Instance))
             {
@@ -82,7 +76,7 @@ namespace PresentationLayer
 
         private void iconButtonActiveFailures_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, Color.FromArgb(255, 255, 255));
+            ActivateButton(sender);
             UserControlActiveFailures.Instance.RefreshList();
 
             if (!panelBody.Controls.Contains(UserControlActiveFailures.Instance))
@@ -99,7 +93,7 @@ namespace PresentationLayer
 
         private void iconButtonHistoryOfFailures_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, Color.FromArgb(255, 255, 255));
+            ActivateButton(sender);
             UserControlHistoryOfFailures.Instance.RefreshList();
 
             if (!panelBody.Controls.Contains(UserControlHistoryOfFailures.Instance))
@@ -123,13 +117,13 @@ namespace PresentationLayer
         {
             this.Hide();
             Login login = new Login();
-            login.Closed += (s, args) => this.Close();
-            login.Show();
+            login.ShowDialog();
+            this.Close();
         }
 
         private void InfrastructureFailureManager_Load(object sender, EventArgs e)
         {
-            lblUser.Text = Login.userName;
+            lblUser.Text = Login.userName; //ovo malo bolje prouci i nauci. Staticka varijabla 
 
             if (!panelBody.Controls.Contains(UserControlHomepage.Instance))
             {

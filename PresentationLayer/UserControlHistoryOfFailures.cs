@@ -15,7 +15,7 @@ namespace PresentationLayer
     {
         private static UserControlHistoryOfFailures _instance;
         public static UserControlHistoryOfFailures Instance
-        {
+        {         
             get
             {
                 if (_instance == null)
@@ -26,14 +26,13 @@ namespace PresentationLayer
             }
         }
 
-        public FailureRepository _failureRepository = new FailureRepository();
-        public BindingSource _tableBindingSource = new BindingSource();
-        public BindingSource _historyOfFailuresBindingSource = new BindingSource();
-        public UserControlHistoryOfFailures()
+        public  FailureRepository _failureRepository = new FailureRepository();
+        public  BindingSource _historyOfFailuresBindingSource = new BindingSource();
+
+        private UserControlHistoryOfFailures()
         {
             InitializeComponent();
 
-            _tableBindingSource.DataSource = _failureRepository.GetFailures();
             _historyOfFailuresBindingSource.DataSource = _failureRepository.GetHistoryOfFailures();
         }
 
@@ -46,7 +45,7 @@ namespace PresentationLayer
 
         public void RefreshList()
         {
-            dataGridViewHistoryOfFailures.DataSource = _failureRepository.GetHistoryOfFailures();
+            _historyOfFailuresBindingSource.DataSource = _failureRepository.GetHistoryOfFailures();
         }
     }
 }

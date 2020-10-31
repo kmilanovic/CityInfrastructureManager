@@ -1,11 +1,14 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,10 +16,8 @@ namespace DataAccessLayer
 {
     public class FailureRepository
     {
-        string connectionString = @"Server = 193.198.57.183; Database = PIS_TEST; User Id = student; Password = student";
+        string connectionString = "Server = 193.198.57.183; Database = PIS_TEST; User Id = student; Password = student";
 
-        public List<Failure> _failures = new List<Failure>();
-        public List<Failure> _historyOffailures = new List<Failure>();
         public List<County> _counties = new List<County>();
         public List<City> _cities = new List<City>();
         public List<TypeOfFailureCodebook> _typesOfFailure = new List<TypeOfFailureCodebook>();
@@ -24,15 +25,14 @@ namespace DataAccessLayer
 
         public FailureRepository()
         {
-            _failures = GetFailures();
-            _historyOffailures = GetHistoryOfFailures();
             _counties = GetCounties();
             _cities = GetCities();
-            _typesOfFailure = GetTypesOfFailure();
+            _typesOfFailure = GetTypesOfFailure(); 
             _users = GetUsers();
         }
-        //Dohvacanje lista podataka iz baze
-        public List<Failure> GetFailures()
+
+        //Dohvacanje podataka sa servera
+        public List<Failure> GetActiveFailures()
         {
             var failures = new List<Failure>();
             string urlFailures = "http://student.vsmti.hr/dpersic/PIS_KV/json.php?action=prikazi_ispade";
@@ -81,8 +81,8 @@ namespace DataAccessLayer
             var counties = new List<County>();
             string urlCounties = "http://student.vsmti.hr/dpersic/PIS_KV/json.php?action=prikazi_zupanije";
             string json = CallRestMethod(urlCounties);
-
             JArray jsonArray = JArray.Parse(json);
+
             foreach (JObject item in jsonArray)
             {
                 counties.Add(new County
@@ -120,8 +120,8 @@ namespace DataAccessLayer
         public List<TypeOfFailureCodebook> GetTypesOfFailure()
         {
             var typesOfFailure = new List<TypeOfFailureCodebook>();
-            string urlTypesOfFailure = "http://student.vsmti.hr/dpersic/PIS_KV/json.php?action=prikazi_vrste_ispada";
-            string json = CallRestMethod(urlTypesOfFailure);
+            string urlTypesOfFailures = "http://student.vsmti.hr/dpersic/PIS_KV/json.php?action=prikazi_vrste_ispada";
+            string json = CallRestMethod(urlTypesOfFailures);
             JArray jsonArray = JArray.Parse(json);
 
             foreach (JObject item in jsonArray)
@@ -156,75 +156,28 @@ namespace DataAccessLayer
             return users;
         }
 
-        //Popunjavanje padajućih izbornika
-        public List<string> GetComboBoxCounties()
+        //Popunjavanje padajucih izbornika
+        public List<String> GetCountiesComboBox()
         {
-            var comboBoxCounties = _counties.Where(x => !string.IsNullOrEmpty(x.Name)).Select(x => x.Name).ToList();
+            var comboBoxCounties = _counties.Select(c=>c.Name).ToList();
             comboBoxCounties.Insert(0, "-");
             return comboBoxCounties;
         }
-        public List<string> GetCitiesByCounty(string countyName)
+        public List<String> GetCitiesByCountyComboBox(string countyName)
         {
-            var comboBoxCities = _cities.Where(a => _counties.Any(b => b.Id == a.Id_County && b.Name == countyName)).Select(a => a.Name).ToList();
+            var comboBoxCities = _cities.Where(ci => _counties.Any(co => co.Name == countyName && co.Id == ci.Id_County)).Select(ci => ci.Name).ToList();
             comboBoxCities.Insert(0, "-");
             return comboBoxCities;
         }
 
-        public List<string> GetComboBoxTypesOfFailure()
+        public List<String> GetTypesOfFailureComboBox()
         {
-            var comboBoxTypesOfFailure = _typesOfFailure.Where(x => !string.IsNullOrEmpty(x.TypeOfFailure)).Select(x => x.TypeOfFailure).ToList();
+            var comboBoxTypesOfFailure = _typesOfFailure.Select(x => x.TypeOfFailure).ToList();
             comboBoxTypesOfFailure.Insert(0, "-");
             return comboBoxTypesOfFailure;
         }
-
-
-        //Dohvaćanje objekta preko stringa
-        public User GetUserByUsername(string username)
-        {
-            var user = _users.Where(u => u.Username == username).Select(u => new User
-            {
-                Id = u.Id,
-                Username = u.Username,
-                Password = u.Password,
-                FirstName = u.FirstName,
-                LastName = u.LastName,
-            }).FirstOrDefault();
-            return user;
-        }
-
-
-        public County GetCountyComboBoxValue(string countyName)
-        {
-            var county = _counties.Where(u => u.Name == countyName).Select(u => new County
-            {
-                Id = u.Id,
-                Name = u.Name
-            }).FirstOrDefault();
-            return county;
-        }
-
-        public City GetCityComboBoxValue(string cityName)
-        {
-            var city = _cities.Where(u => u.Name == cityName).Select(u => new City
-            {
-                Id = u.Id,
-                Name = u.Name
-            }).FirstOrDefault();
-            return city;
-        }
-
-        public TypeOfFailureCodebook GetTypeOfFailureComboBoxValue(string type)
-        {
-            var typeOfFailure = _typesOfFailure.Where(u => u.TypeOfFailure == type).Select(u => new TypeOfFailureCodebook
-            {
-                Id = u.Id,
-                TypeOfFailure = u.TypeOfFailure
-            }).FirstOrDefault();
-            return typeOfFailure;
-        }
-
-
-        //Dohvaćanje vrijednosti u Edit formi
+ 
+        //Dohvacanje vrijednosti za prikaz u Edit formi
         public string GetTypeOfFailureById(int typeOfFailureId)
         {
             var typeOfFailure = _typesOfFailure.Where(u => u.Id == typeOfFailureId).Select(u => u.TypeOfFailure).First().ToString();
@@ -242,6 +195,8 @@ namespace DataAccessLayer
             return city;
         }
 
+
+        //Dohvacanje vrijednosti za spremanje u bazu iz forme za dodavanje ispada
         public int GetTypeOfFailureIdByString(string typeOfFailure)
         {
             var failureId = _typesOfFailure.Where(u => u.TypeOfFailure == typeOfFailure).Select(u => u.Id).First();
@@ -254,16 +209,23 @@ namespace DataAccessLayer
             return userId;
         }
 
+        public int GetCountyIdByString(string county)
+        {
+            var countyId = _counties.Where(u => u.Name == county).Select(u => u.Id).First();
+            return countyId;
+        }
+
         public int GetCityIdByString(string city)
         {
             var cityId = _cities.Where(u => u.Name == city).Select(u => u.Id).First();
             return cityId;
         }
 
-        //Dodavanje u bazu
+        //Dodavanje ispada u bazu 
         public void AddFailure(Failure failure)
         {
-            using (DbConnection oConnection = new SqlConnection(connectionString)) using (DbCommand oCommand = oConnection.CreateCommand())
+            using (DbConnection oConnection = new SqlConnection(connectionString))
+            using (DbCommand oCommand = oConnection.CreateCommand())
             {
                 oCommand.CommandText = "INSERT INTO [03_Ispad] (ID_korisnik, ID_vrsta_ispada, ID_grad, Datum_vrijeme_pocetka_ispada, Dodatan_opis) VALUES('" + failure.Id_Username + "', '" + failure.Id_TypeOfFailure + "', '" + failure.Id_City + "', '" + failure.BeginOfFailure.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + failure.AdditionalDescription + "')";
                 oConnection.Open();
@@ -277,23 +239,26 @@ namespace DataAccessLayer
         //Azuriranje ispada s datumom zavrsetka
         public void UpdateFailure(Failure failure)
         {
-            using (DbConnection oConnection = new SqlConnection(connectionString)) using (DbCommand oCommand = oConnection.CreateCommand())
+            using (DbConnection oConnection = new SqlConnection(connectionString))
+            using (DbCommand oCommand = oConnection.CreateCommand())
             {
-                oCommand.CommandText = "UPDATE [03_Ispad] SET ID_korisnik = '" + failure.Id_Username + "', ID_vrsta_ispada = '" + failure.Id_TypeOfFailure + "', ID_grad = '" + failure.Id_City + "', Datum_vrijeme_pocetka_ispada = '" + failure.BeginOfFailure.ToString("yyyy-MM-dd HH:mm:ss") + "', Datum_vrijeme_zavrsetka_ispada = '" + failure.EndOfFailure?.ToString("yyyy-MM-dd HH:mm:ss") + "', Dodatan_opis = '" + failure.AdditionalDescription + "'WHERE ID_ispad = " + failure.Id; oConnection.Open();
+                oCommand.CommandText = "UPDATE [03_Ispad] SET ID_korisnik = '" + failure.Id_Username + "', ID_vrsta_ispada = '" + failure.Id_TypeOfFailure + "', ID_grad = '" + failure.Id_City + "', Datum_vrijeme_pocetka_ispada = '" + failure.BeginOfFailure.ToString("yyyy-MM-dd HH:mm:ss") + "', Datum_vrijeme_zavrsetka_ispada = '" + failure.EndOfFailure?.ToString("yyyy-MM-dd HH:mm:ss") + "', Dodatan_opis = '" + failure.AdditionalDescription + "'WHERE ID_ispad = " + failure.Id;
+                oConnection.Open();
                 using (DbDataReader oReader = oCommand.ExecuteReader())
                 {
 
                 }
             }
-
         }
 
         //Azuriranje ispada bez datuma zavrsetka
         public void UpdateFailureWithoutDate(Failure failure)
         {
-            using (DbConnection oConnection = new SqlConnection(connectionString)) using (DbCommand oCommand = oConnection.CreateCommand())
+            using (DbConnection oConnection = new SqlConnection(connectionString))
+            using (DbCommand oCommand = oConnection.CreateCommand())
             {
-                oCommand.CommandText = "UPDATE [03_Ispad] SET ID_korisnik = '" + failure.Id_Username + "', ID_vrsta_ispada = '" + failure.Id_TypeOfFailure + "', ID_grad = '" + failure.Id_City + "', Datum_vrijeme_pocetka_ispada = '" + failure.BeginOfFailure.ToString("yyyy-MM-dd HH:mm:ss") + "', Dodatan_opis = '" + failure.AdditionalDescription + "'WHERE ID_ispad = " + failure.Id; oConnection.Open();
+                oCommand.CommandText = "UPDATE [03_Ispad] SET ID_korisnik = '" + failure.Id_Username + "', ID_vrsta_ispada = '" + failure.Id_TypeOfFailure + "', ID_grad = '" + failure.Id_City + "', Datum_vrijeme_pocetka_ispada = '" + failure.BeginOfFailure.ToString("yyyy-MM-dd HH:mm:ss") + "', Dodatan_opis = '" + failure.AdditionalDescription + "'WHERE ID_ispad = " + failure.Id;
+                oConnection.Open();
                 using (DbDataReader oReader = oCommand.ExecuteReader())
                 {
 
@@ -302,11 +267,11 @@ namespace DataAccessLayer
 
         }
 
-
         //Brisanje ispada
         public void DeleteFailure(Failure failure)
         {
-            using (DbConnection oConnection = new SqlConnection(connectionString)) using (DbCommand oCommand = oConnection.CreateCommand())
+            using (DbConnection oConnection = new SqlConnection(connectionString))
+            using (DbCommand oCommand = oConnection.CreateCommand())
             {
                 oCommand.CommandText = "DELETE FROM [03_Ispad] WHERE ID_ispad = '" + failure.Id + "'";
                 oConnection.Open();
@@ -318,14 +283,10 @@ namespace DataAccessLayer
         }
         public static string CallRestMethod(string url)
         {
-            HttpWebRequest webrequest = (HttpWebRequest)WebRequest.Create(url);
-            webrequest.MaximumAutomaticRedirections = 5;
-            webrequest.MaximumResponseHeadersLength = 5;
+            WebRequest webrequest = (HttpWebRequest)WebRequest.Create(url);
             webrequest.Method = "GET";
-            webrequest.ContentType = "application/x-www-form-urlencoded";
             HttpWebResponse webresponse = (HttpWebResponse)webrequest.GetResponse();
-            Encoding enc = System.Text.Encoding.GetEncoding("utf-8");
-            StreamReader responseStream = new StreamReader(webresponse.GetResponseStream(), enc);
+            StreamReader responseStream = new StreamReader(webresponse.GetResponseStream());
             string result = string.Empty;
             result = responseStream.ReadToEnd();
             webresponse.Close();

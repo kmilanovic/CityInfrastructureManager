@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditFailure));
             this.panelEditTitle = new System.Windows.Forms.Panel();
             this.lblEditFailure = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelEdit = new System.Windows.Forms.Panel();
+            this.lblBeginDate = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblUserId = new System.Windows.Forms.Label();
             this.btnSaveEdit = new System.Windows.Forms.Button();
             this.textBoxAdditionalDescription = new System.Windows.Forms.RichTextBox();
             this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerBegin = new System.Windows.Forms.DateTimePicker();
             this.lblCity = new System.Windows.Forms.Label();
             this.lblTypeOfFailure = new System.Windows.Forms.Label();
             this.lblFailure = new System.Windows.Forms.Label();
@@ -47,7 +48,7 @@
             this.lblTypeOfFailureId = new System.Windows.Forms.Label();
             this.lblFailureId = new System.Windows.Forms.Label();
             this.panelEditTitle.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelEdit.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelEditTitle
@@ -71,29 +72,42 @@
             this.lblEditFailure.TabIndex = 0;
             this.lblEditFailure.Text = "UREDI ISPAD";
             // 
-            // panel1
+            // panelEdit
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.lblUsername);
-            this.panel1.Controls.Add(this.lblUserId);
-            this.panel1.Controls.Add(this.btnSaveEdit);
-            this.panel1.Controls.Add(this.textBoxAdditionalDescription);
-            this.panel1.Controls.Add(this.dateTimePickerEnd);
-            this.panel1.Controls.Add(this.dateTimePickerBegin);
-            this.panel1.Controls.Add(this.lblCity);
-            this.panel1.Controls.Add(this.lblTypeOfFailure);
-            this.panel1.Controls.Add(this.lblFailure);
-            this.panel1.Controls.Add(this.lblAdditionalDescription);
-            this.panel1.Controls.Add(this.lblEndOfFailure);
-            this.panel1.Controls.Add(this.lblBeginOfFailure);
-            this.panel1.Controls.Add(this.lblCityId);
-            this.panel1.Controls.Add(this.lblTypeOfFailureId);
-            this.panel1.Controls.Add(this.lblFailureId);
-            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(27, 85);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1232, 443);
-            this.panel1.TabIndex = 1;
+            this.panelEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEdit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelEdit.Controls.Add(this.lblBeginDate);
+            this.panelEdit.Controls.Add(this.lblUsername);
+            this.panelEdit.Controls.Add(this.lblUserId);
+            this.panelEdit.Controls.Add(this.btnSaveEdit);
+            this.panelEdit.Controls.Add(this.textBoxAdditionalDescription);
+            this.panelEdit.Controls.Add(this.dateTimePickerEnd);
+            this.panelEdit.Controls.Add(this.lblCity);
+            this.panelEdit.Controls.Add(this.lblTypeOfFailure);
+            this.panelEdit.Controls.Add(this.lblFailure);
+            this.panelEdit.Controls.Add(this.lblAdditionalDescription);
+            this.panelEdit.Controls.Add(this.lblEndOfFailure);
+            this.panelEdit.Controls.Add(this.lblBeginOfFailure);
+            this.panelEdit.Controls.Add(this.lblCityId);
+            this.panelEdit.Controls.Add(this.lblTypeOfFailureId);
+            this.panelEdit.Controls.Add(this.lblFailureId);
+            this.panelEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelEdit.Location = new System.Drawing.Point(27, 85);
+            this.panelEdit.Name = "panelEdit";
+            this.panelEdit.Size = new System.Drawing.Size(1232, 443);
+            this.panelEdit.TabIndex = 1;
+            // 
+            // lblBeginDate
+            // 
+            this.lblBeginDate.AutoSize = true;
+            this.lblBeginDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBeginDate.Location = new System.Drawing.Point(594, 164);
+            this.lblBeginDate.Name = "lblBeginDate";
+            this.lblBeginDate.Size = new System.Drawing.Size(158, 20);
+            this.lblBeginDate.TabIndex = 30;
+            this.lblBeginDate.Text = "15.09.2020 12:06:37";
             // 
             // lblUsername
             // 
@@ -101,9 +115,9 @@
             this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.Location = new System.Drawing.Point(593, 51);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(18, 20);
+            this.lblUsername.Size = new System.Drawing.Size(87, 20);
             this.lblUsername.TabIndex = 29;
-            this.lblUsername.Text = "2";
+            this.lblUsername.Text = "kmilanovic";
             // 
             // lblUserId
             // 
@@ -132,7 +146,7 @@
             // textBoxAdditionalDescription
             // 
             this.textBoxAdditionalDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAdditionalDescription.Location = new System.Drawing.Point(495, 269);
+            this.textBoxAdditionalDescription.Location = new System.Drawing.Point(597, 269);
             this.textBoxAdditionalDescription.Name = "textBoxAdditionalDescription";
             this.textBoxAdditionalDescription.Size = new System.Drawing.Size(258, 91);
             this.textBoxAdditionalDescription.TabIndex = 26;
@@ -143,21 +157,11 @@
             this.dateTimePickerEnd.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             this.dateTimePickerEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(495, 213);
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(598, 213);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
             this.dateTimePickerEnd.Size = new System.Drawing.Size(258, 27);
             this.dateTimePickerEnd.TabIndex = 25;
             this.dateTimePickerEnd.ValueChanged += new System.EventHandler(this.dateTimePickerEnd_ValueChanged);
-            // 
-            // dateTimePickerBegin
-            // 
-            this.dateTimePickerBegin.CustomFormat = "dd.MM.yyyy HH:mm:ss";
-            this.dateTimePickerBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerBegin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerBegin.Location = new System.Drawing.Point(495, 164);
-            this.dateTimePickerBegin.Name = "dateTimePickerBegin";
-            this.dateTimePickerBegin.Size = new System.Drawing.Size(258, 27);
-            this.dateTimePickerBegin.TabIndex = 24;
             // 
             // lblCity
             // 
@@ -165,9 +169,9 @@
             this.lblCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCity.Location = new System.Drawing.Point(593, 122);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(18, 20);
+            this.lblCity.Size = new System.Drawing.Size(61, 20);
             this.lblCity.TabIndex = 23;
-            this.lblCity.Text = "3";
+            this.lblCity.Text = "Našice";
             // 
             // lblTypeOfFailure
             // 
@@ -175,9 +179,9 @@
             this.lblTypeOfFailure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTypeOfFailure.Location = new System.Drawing.Point(593, 84);
             this.lblTypeOfFailure.Name = "lblTypeOfFailure";
-            this.lblTypeOfFailure.Size = new System.Drawing.Size(18, 20);
+            this.lblTypeOfFailure.Size = new System.Drawing.Size(119, 20);
             this.lblTypeOfFailure.TabIndex = 22;
-            this.lblTypeOfFailure.Text = "2";
+            this.lblTypeOfFailure.Text = "Nestanak vode";
             // 
             // lblFailure
             // 
@@ -256,15 +260,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1282, 553);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelEdit);
             this.Controls.Add(this.panelEditTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditFailure";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditFailure";
             this.Load += new System.EventHandler(this.EditFailure_Load);
             this.panelEditTitle.ResumeLayout(false);
             this.panelEditTitle.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelEdit.ResumeLayout(false);
+            this.panelEdit.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -273,13 +280,12 @@
 
         private System.Windows.Forms.Panel panelEditTitle;
         private System.Windows.Forms.Label lblEditFailure;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelEdit;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblUserId;
         private System.Windows.Forms.Button btnSaveEdit;
         private System.Windows.Forms.RichTextBox textBoxAdditionalDescription;
         private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
-        private System.Windows.Forms.DateTimePicker dateTimePickerBegin;
         private System.Windows.Forms.Label lblCity;
         private System.Windows.Forms.Label lblTypeOfFailure;
         private System.Windows.Forms.Label lblFailure;
@@ -289,5 +295,6 @@
         private System.Windows.Forms.Label lblCityId;
         private System.Windows.Forms.Label lblTypeOfFailureId;
         private System.Windows.Forms.Label lblFailureId;
+        private System.Windows.Forms.Label lblBeginDate;
     }
 }

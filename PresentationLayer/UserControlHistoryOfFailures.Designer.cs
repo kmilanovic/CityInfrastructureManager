@@ -44,7 +44,8 @@
             // 
             // dataGridViewHistoryOfFailures
             // 
-            this.dataGridViewHistoryOfFailures.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridViewHistoryOfFailures.AllowUserToAddRows = false;
+            this.dataGridViewHistoryOfFailures.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewHistoryOfFailures.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewHistoryOfFailures.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridViewHistoryOfFailures.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;

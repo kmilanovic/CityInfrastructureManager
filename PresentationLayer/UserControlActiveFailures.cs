@@ -27,17 +27,17 @@ namespace PresentationLayer
         }
 
         public FailureRepository _failureRepository = new FailureRepository();
-        public BindingSource _tableBindingSource = new BindingSource();
-        public UserControlActiveFailures()
+        public BindingSource _activeFailuresBindingSource = new BindingSource();
+        private UserControlActiveFailures()
         {
             InitializeComponent();
 
-            _tableBindingSource.DataSource = _failureRepository.GetFailures();
+            _activeFailuresBindingSource.DataSource = _failureRepository.GetActiveFailures();
         }
 
         private void UserControlActiveFailures_Load(object sender, EventArgs e)
         {
-            dataGridViewActiveFailures.DataSource = _tableBindingSource;
+            dataGridViewActiveFailures.DataSource = _activeFailuresBindingSource;
 
             dataGridViewActiveFailures.AutoGenerateColumns = false;
             dataGridViewActiveFailures.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
@@ -45,7 +45,6 @@ namespace PresentationLayer
             DataGridViewImageColumn oDeleteButton = new DataGridViewImageColumn();
             oDeleteButton.Image = Image.FromFile("C:\\Users\\Kristijan\\Documents\\Visual Studio 2015\\Projects\\CityInfrastructureManager_ZavrsniRad\\PresentationLayer\\Resources\\trash.png");
 
-            oDeleteButton.Width = 20;
             oDeleteButton.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewActiveFailures.Columns.Add(oDeleteButton);
             dataGridViewActiveFailures.Columns[7].HeaderText = "Obriši";
@@ -53,7 +52,7 @@ namespace PresentationLayer
 
         public void RefreshList()
         {
-            dataGridViewActiveFailures.DataSource = _failureRepository.GetFailures();
+            _activeFailuresBindingSource.DataSource = _failureRepository.GetActiveFailures();
         }
 
         private void dataGridViewActiveFailures_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -81,40 +80,30 @@ namespace PresentationLayer
             }            
         }
 
-        private void dataGridViewActiveFailures_SelectionChanged(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in dataGridViewActiveFailures.SelectedRows)
-            {
-                var id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                var id_username = Convert.ToInt32(row.Cells[1].Value.ToString());
-                var id_type_of_failure = Convert.ToInt32(row.Cells[2].Value.ToString());
-                var id_city = Convert.ToInt32(row.Cells[3].Value.ToString());
-                var begin_of_failure = Convert.ToDateTime(row.Cells[4].Value.ToString());
-                var additional_description = row.Cells[6].Value.ToString();
-            }
-        }
-
         private void dataGridViewActiveFailures_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var id = Convert.ToInt32(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[0].Value.ToString());
-            var id_username = Convert.ToInt32(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[1].Value.ToString());
-            var id_type_of_failure = Convert.ToInt32(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[2].Value.ToString());
-            var id_city = Convert.ToInt32(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[3].Value.ToString());
-            var begin_of_failure = Convert.ToDateTime(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[4].Value);
-            var additional_description = dataGridViewActiveFailures.Rows[e.RowIndex].Cells[6].Value.ToString();
-
-            var failure = new Failure
+            if (e.RowIndex != -1)
             {
-                Id = id,
-                Id_Username = id_username,
-                Id_TypeOfFailure = id_type_of_failure,
-                Id_City = id_city,
-                BeginOfFailure = begin_of_failure,
-                AdditionalDescription = additional_description
-            };
+                var id = Convert.ToInt32(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[0].Value.ToString());
+                var id_username = Convert.ToInt32(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[1].Value.ToString());
+                var id_type_of_failure = Convert.ToInt32(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[2].Value.ToString());
+                var id_city = Convert.ToInt32(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[3].Value.ToString());
+                var begin_of_failure = Convert.ToDateTime(dataGridViewActiveFailures.Rows[e.RowIndex].Cells[4].Value);
+                var additional_description = dataGridViewActiveFailures.Rows[e.RowIndex].Cells[6].Value.ToString();
 
-            EditFailure formEditFailure = new EditFailure(failure);
-            formEditFailure.Show();
+                var failure = new Failure
+                {
+                    Id = id,
+                    Id_Username = id_username,
+                    Id_TypeOfFailure = id_type_of_failure,
+                    Id_City = id_city,
+                    BeginOfFailure = begin_of_failure,
+                    AdditionalDescription = additional_description
+                };
+
+                EditFailure formEditFailure = new EditFailure(failure);
+                formEditFailure.Show();
+            }        
         }
     }
 }

@@ -26,7 +26,7 @@ namespace PresentationLayer
             }
         }
 
-        public UserControlHomepage()
+        private UserControlHomepage()
         {
             InitializeComponent();
         }

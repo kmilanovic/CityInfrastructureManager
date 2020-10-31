@@ -45,7 +45,7 @@
             // dataGridViewActiveFailures
             // 
             this.dataGridViewActiveFailures.AllowUserToAddRows = false;
-            this.dataGridViewActiveFailures.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridViewActiveFailures.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewActiveFailures.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewActiveFailures.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridViewActiveFailures.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -91,11 +91,10 @@
             this.dataGridViewActiveFailures.RowHeadersVisible = false;
             this.dataGridViewActiveFailures.RowTemplate.Height = 24;
             this.dataGridViewActiveFailures.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewActiveFailures.Size = new System.Drawing.Size(985, 440);
+            this.dataGridViewActiveFailures.Size = new System.Drawing.Size(1320, 550);
             this.dataGridViewActiveFailures.TabIndex = 0;
             this.dataGridViewActiveFailures.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewActiveFailures_CellContentClick);
             this.dataGridViewActiveFailures.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewActiveFailures_CellDoubleClick);
-            this.dataGridViewActiveFailures.SelectionChanged += new System.EventHandler(this.dataGridViewActiveFailures_SelectionChanged);
             // 
             // Id
             // 
@@ -153,7 +152,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.dataGridViewActiveFailures);
             this.Name = "UserControlActiveFailures";
-            this.Size = new System.Drawing.Size(985, 440);
+            this.Size = new System.Drawing.Size(1320, 550);
             this.Load += new System.EventHandler(this.UserControlActiveFailures_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActiveFailures)).EndInit();
             this.ResumeLayout(false);

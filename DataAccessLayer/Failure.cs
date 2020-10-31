@@ -13,7 +13,7 @@ namespace DataAccessLayer
         public int Id_TypeOfFailure { get; set; }
         public int Id_City { get; set; }
         public DateTime BeginOfFailure { get; set; }
-        public DateTime? EndOfFailure { get; set; }
+        public DateTime? EndOfFailure { get; set; } 
         public string AdditionalDescription { get; set; }
     }
 }

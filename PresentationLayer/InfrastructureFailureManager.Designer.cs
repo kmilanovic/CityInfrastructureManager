@@ -96,9 +96,9 @@
             this.lblUser.Location = new System.Drawing.Point(39, 521);
             this.lblUser.Name = "lblUser";
             this.lblUser.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.lblUser.Size = new System.Drawing.Size(117, 20);
+            this.lblUser.Size = new System.Drawing.Size(96, 20);
             this.lblUser.TabIndex = 5;
-            this.lblUser.Text = "kmilanovic";
+            this.lblUser.Text = "korisnik";
             // 
             // iconButtonHistoryOfFailures
             // 
@@ -186,7 +186,7 @@
             this.btnHome.Image = ((System.Drawing.Image)(resources.GetObject("btnHome.Image")));
             this.btnHome.Location = new System.Drawing.Point(3, 31);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(244, 74);
+            this.btnHome.Size = new System.Drawing.Size(240, 70);
             this.btnHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnHome.TabIndex = 0;
             this.btnHome.TabStop = false;
@@ -220,7 +220,10 @@
             this.Controls.Add(this.panelBody);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InfrastructureFailureManager";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "InfrastructureFailureManager";
             this.Load += new System.EventHandler(this.InfrastructureFailureManager_Load);
             this.panelMenu.ResumeLayout(false);
